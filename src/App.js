@@ -1,25 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import {connect} from "react-redux";
+import ToDoListWrapper from "./Components/ToDoListWrapper";
+import 'bootstrap/dist/css/bootstrap.css'
+import ModalWindow from "./Components/ModalWindow";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(props) {
+    const {appTitle} = props
+    return (
+        <div className="App">
+
+            <h1>{appTitle}</h1>
+            <ToDoListWrapper/>
+            <ModalWindow/>
+
+        </div>
+    );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+    appTitle: state.appName
+})
+
+
+export default connect(mapStateToProps)(App);
